@@ -14,6 +14,8 @@
 #include "freertos/task.h"
 #include "esp_heap_caps.h"
 #include "soc/spi_reg.h"
+#include "rom/gpio.h"
+#include "driver/gpio.h"
 
 
 // ====================================================
@@ -942,6 +944,14 @@ void TFT_display_init()
 	///Enable backlight
 #if PIN_NUM_BCKL
     gpio_set_level(PIN_NUM_BCKL, PIN_BCKL_ON);
+    // vTaskDelay(1000/portTICK_PERIOD_MS);
+    // gpio_set_level(PIN_NUM_BCKL, PIN_BCKL_OFF);
+    // vTaskDelay(1000/portTICK_PERIOD_MS);
+    // gpio_set_level(PIN_NUM_BCKL, PIN_BCKL_ON);
+    // vTaskDelay(1000/portTICK_PERIOD_MS);
+    // gpio_set_level(PIN_NUM_BCKL, PIN_BCKL_OFF);
+    //     vTaskDelay(1000/portTICK_PERIOD_MS);
+    // gpio_set_level(PIN_NUM_BCKL, PIN_BCKL_ON);
 #endif
 }
 

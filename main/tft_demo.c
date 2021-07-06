@@ -34,7 +34,7 @@
 #include <sys/time.h>
 #include <unistd.h>
 #include "lwip/err.h"
-#include "apps/sntp/sntp.h"
+//#include "apps/sntp/sntp.h"
 #include "esp_log.h"
 #include "nvs_flash.h"
 
@@ -115,13 +115,13 @@ static void initialise_wifi(void)
 }
 
 //-------------------------------
-static void initialize_sntp(void)
-{
-    ESP_LOGI(tag, "Initializing SNTP");
-    sntp_setoperatingmode(SNTP_OPMODE_POLL);
-    sntp_setservername(0, "pool.ntp.org");
-    sntp_init();
-}
+//static void initialize_sntp(void)
+//{
+//    ESP_LOGI(tag, "Initializing SNTP");
+//    sntp_setoperatingmode(SNTP_OPMODE_POLL);
+//    sntp_setservername(0, "pool.ntp.org");
+//    sntp_init();
+//}
 
 //--------------------------
 static int obtain_time(void)
@@ -130,7 +130,7 @@ static int obtain_time(void)
     initialise_wifi();
     xEventGroupWaitBits(wifi_event_group, CONNECTED_BIT, false, true, portMAX_DELAY);
 
-    initialize_sntp();
+//    initialize_sntp();
 
     // wait for time to be set
     int retry = 0;
@@ -922,7 +922,8 @@ static void poly_demo()
 			TFT_drawPolygon(x, y, sides[i], r, TFT_BLACK, TFT_BLACK, oldrot, 1);
 			TFT_drawPolygon(x, y, sides[i], r, color[i], color[i], rot, 1);
 			r -= 16;
-            if (r <= 0) break;
+            if (r <= 0) 
+                break;
 			n += 2;
 		}
 		Wait(100);
@@ -944,7 +945,8 @@ static void poly_demo()
 		for (i=5; i>=0; i--) {
 			TFT_drawPolygon(x, y, sides[i], r, color[i], fill[i], rot, 2);
 			r -= 16;
-            if (r <= 0) break;
+            if (r <= 0)
+                break;
 			n += 2;
 		}
 		Wait(500);
